@@ -1,209 +1,482 @@
-<html>
-<head><title>Dheeraj</title>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Dheeraj Chopra — Learning Centre</title>
 
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand:     #0f4c81;
+      --brand-lt:  #1a6cbf;
+      --accent:    #00b4d8;
+      --bg:        #f0f6ff;
+      --card-bg:   #ffffff;
+      --text:      #1e293b;
+      --muted:     #64748b;
+      --border:    #dde8f5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-lt) 60%, var(--accent) 100%);
+      color: #fff;
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      margin: 0;
+    }
+    .hero .badge-pill {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: .85rem;
+      margin-top: 16px;
+    }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--brand);
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+      margin: 0 0 20px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 6px 20px rgba(15,76,129,.12); }
+    .card-body { padding: 24px; }
+
+    /* ── Repo lists ── */
+    .repo-list { list-style: none; padding: 0; margin: 0; }
+    .repo-list li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .repo-list li:last-child { border-bottom: none; }
+    .repo-list a {
+      color: var(--brand-lt);
+      text-decoration: none;
+      font-size: .95rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .repo-list a:hover { color: var(--accent); }
+    .repo-list a::before { content: "↗"; font-size: .75rem; opacity: .6; }
+    .repo-list .no-link { color: var(--muted); font-size: .95rem; }
+
+    /* ── Cert grid ── */
+    .cert-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .cert-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(0,180,216,.1);
+    }
+    .cert-item a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .cert-item a:hover { color: var(--brand-lt); }
+    .cert-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Achievement badges ── */
+    .achievement-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: var(--card-bg);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .achievement-card .icon { font-size: 1.8rem; }
+    .achievement-card h6 { margin: 0 0 4px; font-weight: 600; font-size: .95rem; }
+    .achievement-card p  { margin: 0; font-size: .82rem; color: var(--muted); }
+    .achievement-card a  { text-decoration: none; color: inherit; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--brand);
+      color: rgba(255,255,255,.75);
+      text-align: center;
+      padding: 28px 16px;
+      margin-top: 60px;
+      font-size: .88rem;
+    }
+    footer a { color: #fff; text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+    .linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px;
+      padding: 8px 18px;
+      margin-top: 10px;
+    }
+
+    main { padding: 40px 0 0; }
+  </style>
 </head>
-<style>
-body {
-  background-color: lightblue;
-}
-
-h1{
-color: white;
-text-align: center;
-}
-h2 {
-  color: darkgreen;
-  margin-left: 40px;
-  margin-bottom: 0px;
-}
-h1 {
-  color: darkgreen;
-}
-ul {
-  color: green;
-  margin-left: 40px;
-}
-li {
-  font-family: verdana;
-  font-size: 20px;
-}
-
-a {
-  font-family: verdana;
-  font-size: 20px;
-}
-
-.custom-class {
-  display: flex;
-}
-
-footer {
-   position:absolute;
-   bottom:0;
-   width: 4%;
-   height:60px;   /* Height of the footer */
-   background:#98f;
-}
-</style>
 <body>
-<div class="container well" style="background-color: powderblue;">
-<h2><span style='font-size:30px;'>&#128525;</span>  My Learning Centre !!!</h2>
+
+<!-- ── Hero ── -->
+<header class="hero">
+  <div>&#128525;</div>
+  <h1>Dheeraj Kumar Chopra</h1>
+  <p>DevOps &amp; Cloud Engineer &nbsp;·&nbsp; Building Reliable Systems at Scale</p>
+  <span class="badge-pill">📚 My Learning Centre</span>
+</header>
+
+<main>
+<div class="container" style="max-width: 1100px;">
+
+  <!-- ── Achievements ── -->
+  <section class="mb-5">
+    <h2 class="section-title">Achievements &amp; Profiles</h2>
+    <div class="row g-3">
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">🌐</span>
+          <div>
+            <h6><a href="http://britq.com" target="_blank">My Website</a></h6>
+            <p>Personal site at britq.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">🏆</span>
+          <div>
+            <h6><a href="https://www.hackerrank.com/certificates/344f99f74dab" target="_blank">HackerRank Python Basic</a></h6>
+            <p>Certified Python programmer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">🧩</span>
+          <div>
+            <h6><a href="https://www.hackerrank.com/certificates/54cdb76881ef" target="_blank">HackerRank Problem Solving</a></h6>
+            <p>Certified problem solver</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">💡</span>
+          <div>
+            <h6><a href="https://leetcode.com/dhirajkumar/" target="_blank">LeetCode Profile</a></h6>
+            <p>250+ problems solved by 30 May 2021</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">👨‍💻</span>
+          <div>
+            <h6><a href="https://www.codechef.com/users/dhirajkumar055" target="_blank">CodeChef</a></h6>
+            <p>Competitive programming</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="achievement-card">
+          <span class="icon">🎯</span>
+          <div>
+            <h6><a href="https://leetcode.com/contest/weekly-contest-190/ranking/40/" target="_blank">LeetCode Contest #190</a></h6>
+            <p>Solved all 4 questions in weekly contest</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Certifications ── -->
+  <section class="mb-5">
+    <h2 class="section-title">Certifications</h2>
+    <div class="row g-3">
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🔍</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-18ade686-c883-43d7-ba4c-92ac51ed69d3.pdf" target="_blank">Complete Elasticsearch Masterclass with Logstash &amp; Kibana</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🐍</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-74cd7afe-1c61-4413-b579-222e192ce342.pdf" target="_blank">Try Django 2.2 — Web Development with Python 3.6+</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🗄️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-9TKEE86W.pdf" target="_blank">Advanced SQL: The Ultimate Guide</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🌐</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-700a9b0f-ca48-4cfd-801b-715dd3b91a92.pdf" target="_blank">The Perfect Nginx Server — Ubuntu Edition</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🎨</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-XIMMKG0B.pdf" target="_blank">Complete Front-End Web Developer Bootcamp</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🐧</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-e435c0ca-1964-4095-a610-d2082c49e6d8.pdf" target="_blank">Linux Administration with Troubleshooting Skills</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🔐</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c88999b6-86ef-4297-8cf1-84f7bb71533c.pdf" target="_blank">Complete Cyber Security Course: Network Security</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">☸️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7a496a4f-bc2a-424e-bb73-140cb2db0809.pdf" target="_blank">Amazon EKS Starter: Docker on AWS EKS with Kubernetes</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🕸️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c4cb144e-8416-4ce3-a91b-bbbaa1e54af0.pdf" target="_blank">Istio Hands-On for Kubernetes</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">⚙️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7ef5ce95-2c03-4d12-9b34-dcaeb364fe55.pdf" target="_blank">DevOps, CI/CD for Beginners</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">📊</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-a05bbd9d-8329-4049-9ff6-1e5a1a4d1d98.pdf" target="_blank">Prometheus: Complete Hands-On for Monitoring &amp; Alerting</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">☁️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7a042822-bd1e-468c-ba3e-0480e7b2fa20.pdf" target="_blank">AWS Serverless APIs &amp; Apps — A Complete Introduction</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">📈</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-253c5a00-39f2-43b6-93f6-994813830971.pdf" target="_blank">Linux Performance Monitoring &amp; Analysis — Hands On</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">📉</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-33a216c4-ac3a-4829-97f9-99ea9ca4b2f9.pdf" target="_blank">Grafana</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🛡️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-b4008d92-e8dd-4073-a27d-191764e71964.pdf" target="_blank">Kubernetes CKS 2023 — Theory &amp; Practice</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🔧</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-eb559475-91b0-47a9-baeb-e9fcf39467b5.pdf" target="_blank">Jenkins: From Zero To Hero — Become a DevOps Jenkins Master</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🏗️</span>
+          <a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c3915e88-aa15-4edf-a954-04b8ac2b726f.pdf" target="_blank">Ultimate AWS Certified SysOps Administrator Associate 2023</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🕸️</span>
+          <a href="https://www.linkedin.com/learning/certificates/3c7e43de41f3092ace42f0bce13c65f1c8667006a6f8d20d2c8f4addba609f68?trk=share_certificate" target="_blank">LinkedIn Learning: Kubernetes: Service Mesh with Istio (2018)</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🔑</span>
+          <a href="https://www.linkedin.com/learning/certificates/bb020d74023a4a7b05ee133ff4c3d92e068ef8f609a4897bb313cd17fd2b3802?trk=share_certificate" target="_blank">LinkedIn Learning: AWS for Developers: Identity Access Management (IAM)</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">☁️</span>
+          <a href="https://www.linkedin.com/learning/certificates/60c0a6a0da8e3ca207e4a1aa020fd3fba5454505c03fb380d1290de5f74365d8?trk=share_certificate" target="_blank">LinkedIn Learning: Microsoft Azure Administrator Associate (AZ-104) Cert Prep</a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="cert-item">
+          <span class="cert-icon">🕸️</span>
+          <a href="https://www.linkedin.com/learning/certificates/536399e09b95a5c7a99074bfc182fba967a4a0ce1bce80ad85f523b34da11793?trk=share_certificate" target="_blank">LinkedIn Learning: Kubernetes: Service Mesh with Istio</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Repositories ── -->
+  <section class="mb-5">
+    <h2 class="section-title">Repositories</h2>
+    <div class="row g-4">
+
+      <!-- Public -->
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-bold text-uppercase text-muted mb-3" style="letter-spacing:.06em;">🌐 Public</h3>
+            <ul class="repo-list">
+              <li><a href="https://github.com/dhirajkumar055/python" target="_blank">Python</a></li>
+              <li><a href="https://github.com/dhirajkumar055/ansible" target="_blank">Ansible</a></li>
+              <li><a href="https://github.com/dhirajkumar055/frontend" target="_blank">Frontend</a></li>
+              <li><a href="https://github.com/dhirajkumar055/linux" target="_blank">Linux</a></li>
+              <li><a href="https://github.com/dhirajkumar055/gitHubTraining" target="_blank">Git</a></li>
+              <li><a href="https://github.com/dhirajkumar055/devops" target="_blank">DevOps</a></li>
+              <li><a href="https://github.com/dhirajkumar055/terraform" target="_blank">Terraform</a></li>
+              <li><a href="https://github.com/dhirajkumar055/dev-ops-challenge" target="_blank">DevOps Challenge</a></li>
+
+              <li><a href="https://github.com/dhirajkumar055/Android" target="_blank">Android</a></li>
+              <li><a href="https://github.com/dhirajkumar055/dhirajkumar055.github.io" target="_blank">GitHub Pages</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Private -->
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-bold text-uppercase text-muted mb-3" style="letter-spacing:.06em;">🔒 Private</h3>
+            <ul class="repo-list">
+              <li><span class="no-link">Docker &amp; Kubernetes</span></li>
+              <li><span class="no-link">Jenkins</span></li>
+              <li><span class="no-link">AWS</span></li>
+              <li><span class="no-link">Django</span></li>
+              <li><span class="no-link">Puppet</span></li>
+              <li><span class="no-link">DS &amp; Algorithms</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forked -->
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-bold text-uppercase text-muted mb-3" style="letter-spacing:.06em;">🍴 Forked</h3>
+            <ul class="repo-list">
+              <li><a href="https://github.com/dhirajkumar055/linux" target="_blank">uber/arachne</a></li>
+              <li><a href="https://github.com/dhirajkumar055/UdemyDockerRepo" target="_blank">mission-peace/interview</a></li>
+              <li><a href="https://github.com/dhirajkumar055/gitHubTraining" target="_blank">anshulc55/UdemyDockerRepo</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </div>
+</main>
 
-<div class="container">
-  <div class="row" style="font-size: small;">
-  	<div class="col-sm-3 well" style="background-color: powderblue;">
-		<h2> Public Repos </h2>
-		<ul>
-			<a href=https://github.com/dhirajkumar055/python target="_blank"> <li>Python</li> </a>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12"></div>
-			<a href=https://github.com/dhirajkumar055/ansible target="_blank"> <li>Ansible</li> </a>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12"></div>
-			<a href=https://github.com/dhirajkumar055/frontend target="_blank"><li>Frontend</li> </a>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12"></div>
-			<a href=https://github.com/dhirajkumar055/linux target="_blank"><li>Linux</li> </a>
-			<div class="col-sm-12"></div>
-			<div class="col-sm-12"></div>
-			<a href=https://github.com/dhirajkumar055/gitHubTraining target="_blank"><li>Git</li> </a>
-			<div class="col-sm-12" style="height: 9%"></div>
-		</ul>
-	</div>
-	<div class="col-sm-4 well" style="background-color: powderblue;">
-	<h2>Private Repos</h2>
-	<ul>
-    <li>Docker and Kubernetes</li>
-    <li>Jenkins</li>
-	<li>AWS</li>
-	<li>Django</li>
-	<li>Puppet</li>
-	<li>DS Algo</li>
-	<li>Android</li>
-	</ul>
-	</li>
-</ul>
-	</div>
-<div class="col-sm-5 well" style="background-color: powderblue;">
-	<h2>Forked Repos</h2>
-	<ul>
-	<a href=https://github.com/dhirajkumar055/linux target="_blank"><li>uber/arachne</li> </a>
-	<a href=https://github.com/dhirajkumar055/UdemyDockerRepo target="_blank"><li>mission-peace/interview</li> </a>
-	<a href=https://github.com/dhirajkumar055/gitHubTraining target="_blank"><li>anshulc55/UdemyDockerRepo</li> </a>
-    </ul>
-    <div class="col-sm-12" style="height: 17%"></div>
-</div>
-</div>
-</div>
-<div class="container" padding-bottom="200px">
-	<div class="row">
-		<br>
-		<div class="col-sm-12" style="background-color: powderblue;" >
-                        <a href="http://britq.com" target="_blank">My Website</a>
-                </div>
-                <div class="col-sm-12"></div>
-		
-		<div class="col-sm-12" style="background-color: powderblue;" >
-			<a href="https://www.hackerrank.com/certificates/344f99f74dab" target="_blank">Hacker Rank Python Basic</a>
-		</div>
-		<div class="col-sm-12"></div>
-
-		<div class="col-sm-12" style="background-color: powderblue;">
-		<a href="https://www.hackerrank.com/certificates/54cdb76881ef" target="_blank">Hacker Rank Problem Solving</a>
-		</div>
-		<div class="col-sm-12"></div>
-
-		<div class="col-sm-12" style="background-color: powderblue;">
-		<a href="https://leetcode.com/dhirajkumar/" target="_blank">Leetcode</a>
-		</div>
-		<div class="col-sm-12"></div>
-
-		<div class="col-sm-12" style="background-color: powderblue;">
-		<a href="https://leetcode.com/dhirajkumar/" target="_blank">Completed 250 Leetcode Questions : 30<sup>th</sup>May,2021</a>
-		</div>
-		<div class="col-sm-12"></div>
-
-		<div class="col-sm-12" style="background-color: powderblue;">
-		<a href="https://www.codechef.com/users/dhirajkumar055" target="_blank">CodeChef</a>
-		</div>
-		<div class="col-sm-12"></div>
-		
-		<div class="col-sm-12" style="background-color: powderblue;">
-		<a href="https://leetcode.com/contest/weekly-contest-190/ranking/40/" target="_blank">Fist time solved all 4 question in leetcode weekly contest #976</a>
-		</div>
-		<div class="col-sm-12"></div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-18ade686-c883-43d7-ba4c-92ac51ed69d3.pdf">Udemy: Complete Elasticsearch Masterclass with Logstash and Kibana</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-74cd7afe-1c61-4413-b579-222e192ce342.pdf">Udemy: Try Django 2.2 - Web Development with Python 3.6+</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-9TKEE86W.pdf">Udemy: Advanced SQL : The Ultimate Guide</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-700a9b0f-ca48-4cfd-801b-715dd3b91a92.pdf">Udemy: The Perfect Nginx Server - Ubuntu Edition</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-XIMMKG0B.pdf">Udemy: The Complete front end web developer Bootcamp</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-e435c0ca-1964-4095-a610-d2082c49e6d8.pdf">Udemy: Linux Administration with Troubleshooting Skills</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c88999b6-86ef-4297-8cf1-84f7bb71533c.pdf">Udemy: The Complete Cyber Security Course: Network Security!</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7a496a4f-bc2a-424e-bb73-140cb2db0809.pdf">Udemy: Amazon EKS Starter: Docker on AWS EKS with Kubernetes</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c4cb144e-8416-4ce3-a91b-bbbaa1e54af0.pdf">Udemy: Istio hands-on for Kubernetes</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7ef5ce95-2c03-4d12-9b34-dcaeb364fe55.pdf">Udemy: DevOps, CI/CD for beginners</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-a05bbd9d-8329-4049-9ff6-1e5a1a4d1d98.pdf">Udemy: Prometheus | The Complete Hands-On for Monitoring & Alerting</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-7a042822-bd1e-468c-ba3e-0480e7b2fa20.pdf">Udemy: AWS Serverless APIs & Apps - A Complete Introduction</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-253c5a00-39f2-43b6-93f6-994813830971.pdf">Udemy: Linux Performance Monitoring & Analysis - Hands On !!</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-33a216c4-ac3a-4829-97f9-99ea9ca4b2f9.pdf">Udemy: Grafana</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-b4008d92-e8dd-4073-a27d-191764e71964.pdf">Udemy: Kubernetes CKS 2023 Complete Course - Theory - Practice</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-eb559475-91b0-47a9-baeb-e9fcf39467b5.pdf">Udemy: Jenkins, From Zero To Hero: Become a DevOps Jenkins Master</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="https://udemy-certificate.s3.amazonaws.com/pdf/UC-c3915e88-aa15-4edf-a954-04b8ac2b726f.pdf">Udemy: Ultimate AWS Certified SysOps Administrator Associate 2023</a>
-		</div>
-	
-		<div class="col-sm-12" style="background-color: powderblue;">
-			<a href="#">(+91)8223879668</a>
-		</div>
-		<div class="col-sm-12" style="background-color: powderblue;">
-			
-		</div>
-		<div class="col-sm-12"></div>
-	</div>
-</div>
-
+<!-- ── Footer ── -->
 <footer>
-	<a href=https://www.linkedin.com/in/dheeraj-kumar-chopra-b912258a/ target="_blank"> <img src="linkedin.png" > </a>
+  <p style="margin:0 0 4px;">Dheeraj Kumar Chopra &nbsp;·&nbsp; <a href="tel:+918223879668">(+91) 8223879668</a></p>
+  <a class="linkedin-btn" href="https://www.linkedin.com/in/dheerajkumarchopra/" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+    </svg>
+    LinkedIn
+  </a>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
